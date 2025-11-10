@@ -20,10 +20,9 @@ from basic.views import sample
 from basic.views import sampleInfo
 from basic.views import sample1
 from basic.views import dynamicResponse
-from basic.views import addition
-from basic.views import subtraction
-from basic.views import multiplication
-from basic.views import division
+from basic.views import addition,subtraction,multiplication,division,health
+from basic.views import addstudent
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,5 +33,7 @@ urlpatterns = [
     path('addition/',addition),
     path('subtraction/',subtraction),
     path('multiplication/',multiplication),
-    path('division/',division)
+    path('division/',division),
+    path('health/',health),
+    path('add/',addstudent)
 ]
