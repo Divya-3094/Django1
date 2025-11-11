@@ -36,6 +36,7 @@ urlpatterns = [
     path('division/',division),
     path('health/',health),
     path('student/',addstudent)
+    
 ]
 
 #get, post, put, delete

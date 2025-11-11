@@ -95,4 +95,53 @@ def addstudent(request):
         to_be_delete=Student.objects.get(id=ref_id)
         to_be_delete.delete()
         return JsonResponse({"status":"success","message":"student record deleted successfully","deleted data":get_deleting_data},status=200)
+    
+    elif request.method == "GET":
+        result=list(Student.objects.values())
+        print(result)
+        return JsonResponse({"status":"ok","data":result},status=200)
+    
+    elif request.method == "GET":
+        data=json.loads(request.body)
+        ref_id=data.get("id")
+        result=Student.objects.filter(id=ref_id).values().first()
+        return JsonResponse({"status":"ok","dta":result},status=200)
+    
+    elif request.method == "GET":
+        data=json.loads(request.body)
+        ref_age=data.get("age")
+        result=list(Student.objects.filter(age_gte=ref_age).values())
+        return JsonResponse({"status":"ok","data":result},status=200)
+    
+    elif request.method == "GET":
+        data=json.loads(request.body)
+        ref_age=data.get("age")
+        result=list(Student.objects.filter(age_lte=ref_age).values())
+        return JsonResponse({"status":"ok","data":result},status=200)
+
+    elif request.method =="GET":
+        result=list(Student.objects.order_by("name").values())
+        return JsonResponse({"status":"ok","data":result},status=200)
+    
+    elif request.method == "GET":
+        result=list(Student.objects.values("age").distinct())
+        return JsonResponse({"status":"ok","data":result},status=200)
+
+
+
+
+
     return JsonResponse({"error":"use post method"},status=400)
+
+
+
+
+#get a specific record by id
+
+        
+#filter by age<=25
+#order by name
+#get unique ages
+#count total stude
+#get a specific record by id
+#filter by nts
