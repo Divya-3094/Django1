@@ -70,4 +70,29 @@ def addstudent(request):
             email=data.get("email")
             )
         return JsonResponse({"status":"success","id":student.id},status=200)
+    
+    elif request.method == "GET":
+        result=list(Student.objects.values())
+        print(result)
+        return JsonResponse({"status":"ok","data":result},status=200)
+    
+    elif request.method == "PUT":
+        data=json.loads(request.body)
+        ref_id=data.get("id")       #getting id
+        new_email=data.get("email")     #getting email
+        existing_student=Student.objects.get(id=ref_id)  #fetched the object as per the id
+        # print(existing_student)
+        existing_student.email=new_email        # updating with new email 
+        existing_student.save()
+        updated_data=Student.objects.filter(id=ref_id).values().first()
+        
+        return JsonResponse({"status":"data updated successfully","updated_data":updated_data},status=200)
+    
+    elif request.method == "DELETE":
+        data=json.loads(request.body)
+        ref_id=data.get("id") 
+        get_deleting_data=Student.objects.filter(id=ref_id).values().first()
+        to_be_delete=Student.objects.get(id=ref_id)
+        to_be_delete.delete()
+        return JsonResponse({"status":"success","message":"student record deleted successfully","deleted data":get_deleting_data},status=200)
     return JsonResponse({"error":"use post method"},status=400)
