@@ -21,7 +21,7 @@ from basic.views import sampleInfo
 from basic.views import sample1
 from basic.views import dynamicResponse
 from basic.views import addition,subtraction,multiplication,division,health
-from basic.views import addstudent,job1,job2
+from basic.views import addstudent,job1,job2,signUp
 
 
 urlpatterns = [
@@ -37,7 +37,8 @@ urlpatterns = [
     path('health/',health),
     path('student/',addstudent),
     path('job1/',job1),
-    path('job2/',job2)
+    path('job2/',job2),
+    path('signup/',signUp)
     
 ]
 
